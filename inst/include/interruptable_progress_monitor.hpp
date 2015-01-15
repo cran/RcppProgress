@@ -19,8 +19,7 @@
 #include <omp.h>
 #endif
 
-#include <R_ext/Print.h>
-#include <Rinterface.h>
+#include <R.h>
 
 class InterruptableProgressMonitor {
 public: // ====== LIFECYCLE =====

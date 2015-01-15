@@ -12,11 +12,11 @@ Description: This package allows to display a progress bar in the R
     code, typically using OpenMP.
 URL: https://github.com/kforner/rcpp_progress
 BugReports: https://github.com/kforner/rcpp_progress/issues
-Version: 0.2
+Version: 0.2.1
 Date: 2015-01-15
 Imports: Rcpp (>= 0.9.4)
 LinkingTo: Rcpp
-Packaged: 2015-01-07 13:54:05 UTC; karl
+Packaged: 2015-01-09 00:02:49 UTC; karl
 NeedsCompilation: yes
 Repository: CRAN
-Date/Publication: 2015-01-07 16:03:28
+Date/Publication: 2015-01-09 06:16:10

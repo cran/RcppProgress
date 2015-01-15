@@ -1,4 +1,4 @@
-5ab45a602246c2476efceffc42cb8759 *DESCRIPTION
+a7c30083624841fb34fc62145e59e0fe *DESCRIPTION
 b1772a7b2f8b62836a1fd2a0a85df79d *NAMESPACE
 81d986855df918175c9fb4dbead87200 *R/tests.R
 ece56c48eb18f1e6151ea3f86c8b6518 *R/zzz.R
@@ -20,9 +20,9 @@ f3544be12aeb659d48214aa2cd8bcc9a *inst/examples/RcppProgressExample/man/test_seq
 64b6726bc0339b76889c3ea604298343 *inst/examples/RcppProgressExample/src/Makevars
 475dddbb9e84421f143793e4efd595dd *inst/examples/RcppProgressExample/src/example.cpp
 79d76261c1eb033e12a6b52c9532676b *inst/examples/dev.R
-35c39590dceee9811dd1ed4aefc50365 *inst/include/interruptable_progress_monitor.hpp
+cbb7b28ba604468a38b2a8d391f36bf6 *inst/include/interruptable_progress_monitor.hpp
 2fd16bc319ec5ce78d9fb37b0d71c2ef *inst/include/interrupts.hpp
-b107e8ee2f5439a733130877ee643b3f *inst/include/progress.hpp
+98dc9a73511a54fda3f03b25f9db505b *inst/include/progress.hpp
 c278be41b0424b0e01726c3fec3eb994 *man/RcppProgress-package.Rd
 dd25fbf97c83c57554dd5d3aa7ac1f99 *src/Makevars
 74925c82af58102b5ea92b2610839e12 *src/tests.cpp
