@@ -1,7 +1,7 @@
 Package: RcppProgressExample
 Type: Package
 Title: Example use of the RcppProgress package
-Version: 0.1
+Version: 0.2
 Date: 2012-04-17
 Author: Karl Forner <karl.forner@quartzbio.com>
 Maintainer: Karl Forner <karl.forner@quartzbio.com>

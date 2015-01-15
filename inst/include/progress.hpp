@@ -9,9 +9,14 @@
 #ifndef _RcppProgress_PROGRESS_HPP
 #define _RcppProgress_PROGRESS_HPP
 
-#include <R.h>
 
 #include "interruptable_progress_monitor.hpp"
+
+#include <R_ext/Error.h>
+
+// I must keep this because now some depedent packages rely on Rcpp namespace to be available
+#include <Rcpp.h>
+using namespace Rcpp;
 
 class Progress {
 public:
@@ -23,17 +28,17 @@ public:
 
 	 */
 	Progress(unsigned long max, bool display_progress = true) {
-		if ( _monitor_singleton != 0) { // something is wrong, two simultaneous Progress monitoring
-			error("ERROR: there is already an InterruptableProgressMonitor instance defined");
+		if ( monitor_singleton() != 0) { // something is wrong, two simultaneous Progress monitoring
+			Rf_error("ERROR: there is already an InterruptableProgressMonitor instance defined");
 		}
-		_monitor_singleton = new InterruptableProgressMonitor(max, display_progress);
+		monitor_singleton() = new InterruptableProgressMonitor(max, display_progress);
 	}
 
 	~Progress() {
 		if ( monitor().is_display_on() && ! monitor().is_aborted() )
 			monitor().end_display();
-		delete _monitor_singleton;
-		_monitor_singleton = 0;
+		delete monitor_singleton();
+		monitor_singleton() = 0;
 	}
 
 public: // ==== USER INTERFACE =====
@@ -76,13 +81,15 @@ public: // ==== USER INTERFACE =====
 	 */
 	static bool check_abort() { return monitor().check_abort(); }
 
+private:
+	static InterruptableProgressMonitor*& monitor_singleton() {
+		static InterruptableProgressMonitor* p = 0;
+		return p;
+	}
+
 public: // ==== OTHER PUBLIC INTERFACE =====
-	static InterruptableProgressMonitor& monitor() { return *_monitor_singleton; }
+	static InterruptableProgressMonitor& monitor() { return *monitor_singleton(); }
 
-private: // ===== INSTANCE VARIABLES
-	static InterruptableProgressMonitor* _monitor_singleton;
 };
-
-InterruptableProgressMonitor* Progress::_monitor_singleton = 0;
 
 #endif

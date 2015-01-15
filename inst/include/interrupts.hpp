@@ -17,7 +17,7 @@
 #ifndef _RcppProgress_INTERRUPTS_HPP
 #define _RcppProgress_INTERRUPTS_HPP
 
-#include <R.h>
+#include <Rinternals.h>
 
 
 static void chkIntFn(void *dummy) {
@@ -25,8 +25,10 @@ static void chkIntFn(void *dummy) {
 }
 
 // this will call the above in a top-level context so it won't longjmp-out of your context
-bool checkInterrupt() {
+inline bool checkInterrupt() {
 	return (R_ToplevelExec(chkIntFn, NULL) == FALSE);
 }
 
+// fix a bug because of the length macro (in sglOptim_1.0.122.1)
+#undef length
 #endif

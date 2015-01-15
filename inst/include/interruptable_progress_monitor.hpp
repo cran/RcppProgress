@@ -12,14 +12,15 @@
 #ifndef _RcppProgress_INTERRUPTABLE_PROGRESS_MONITOR_HPP
 #define _RcppProgress_INTERRUPTABLE_PROGRESS_MONITOR_HPP
 
-#include <Rcpp.h>
+
 #include "interrupts.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
 #endif
 
-using namespace Rcpp;
+#include <R_ext/Print.h>
+#include <Rinterface.h>
 
 class InterruptableProgressMonitor {
 public: // ====== LIFECYCLE =====
@@ -89,7 +90,7 @@ public: // ===== PBLIC MAIN INTERFACE =====
 
 		if ( is_master() )  {
 			check_user_interrupt_master();
-			update_display();
+//			update_display();
 		}
 		return is_aborted();
 	}
@@ -127,9 +128,9 @@ public: // ===== methods for MASTER thread =====
 	 */
 	bool update_master(unsigned long current) {
 		// try to make it as fast as possible
-		unsigned long last = _current;
+//		unsigned long last = _current;
 		_current = current;
-		if ( (current - last)*100 > _max )
+//		if ( (current - last)*100 > _max )
 			update_display();
 		return ! is_aborted();
 	}
@@ -179,6 +180,7 @@ public: // ===== methods related to DISPLAY, should not be called directly =====
 			_display_ticks(remaining);
 		}
 		REprintf("|\n");
+		R_FlushConsole();
 	}
 
 	void display_progress_bar() {
@@ -186,6 +188,7 @@ public: // ===== methods related to DISPLAY, should not be called directly =====
 			return;
 		REprintf("0%   10   20   30   40   50   60   70   80   90   100%\n");
 		REprintf("|----|----|----|----|----|----|----|----|----|----|\n");
+		R_FlushConsole();
 	}
 
 protected: // ==== other instance methods =====
@@ -195,8 +198,10 @@ protected: // ==== other instance methods =====
 	}
 
 	void _display_ticks(int nb) {
-		for (int i = 0; i < nb; ++i)
+		for (int i = 0; i < nb; ++i) {
 			REprintf("*");
+			R_FlushConsole();
+		}
 	}
 
 	/**
