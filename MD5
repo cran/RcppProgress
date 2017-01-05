@@ -1,4 +1,5 @@
-a7c30083624841fb34fc62145e59e0fe *DESCRIPTION
+807b55165be6769df12bbaaadb840704 *CHANGELOG
+5b8f020389adab92a99c6f8c8521649d *DESCRIPTION
 b1772a7b2f8b62836a1fd2a0a85df79d *NAMESPACE
 81d986855df918175c9fb4dbead87200 *R/tests.R
 ece56c48eb18f1e6151ea3f86c8b6518 *R/zzz.R
@@ -10,7 +11,7 @@ fc0bd5a713423c04f38afa1f19739501 *inst/examples/RcppProgressArmadillo/NAMESPACE
 491ec45ab8720dbe859c1e059e9a3351 *inst/examples/RcppProgressArmadillo/man/test_multithreaded.Rd
 f3544be12aeb659d48214aa2cd8bcc9a *inst/examples/RcppProgressArmadillo/man/test_sequential.Rd
 64b6726bc0339b76889c3ea604298343 *inst/examples/RcppProgressArmadillo/src/Makevars
-7b9e45f10fb833775b6fac5977ea735e *inst/examples/RcppProgressArmadillo/src/example.cpp
+598b7b9d7539e205ecff10440c48e78f *inst/examples/RcppProgressArmadillo/src/example.cpp
 f28f88e40b610c586a800a9c4af8d953 *inst/examples/RcppProgressExample/DESCRIPTION
 a8a0bf142fb441f337772494379e0b45 *inst/examples/RcppProgressExample/NAMESPACE
 9de355ba31384800d82474944b0487d7 *inst/examples/RcppProgressExample/R/examples.R
@@ -20,9 +21,11 @@ f3544be12aeb659d48214aa2cd8bcc9a *inst/examples/RcppProgressExample/man/test_seq
 64b6726bc0339b76889c3ea604298343 *inst/examples/RcppProgressExample/src/Makevars
 475dddbb9e84421f143793e4efd595dd *inst/examples/RcppProgressExample/src/example.cpp
 79d76261c1eb033e12a6b52c9532676b *inst/examples/dev.R
-cbb7b28ba604468a38b2a8d391f36bf6 *inst/include/interruptable_progress_monitor.hpp
-2fd16bc319ec5ce78d9fb37b0d71c2ef *inst/include/interrupts.hpp
-98dc9a73511a54fda3f03b25f9db505b *inst/include/progress.hpp
-c278be41b0424b0e01726c3fec3eb994 *man/RcppProgress-package.Rd
-dd25fbf97c83c57554dd5d3aa7ac1f99 *src/Makevars
+79349192d27ae10fdf2de22625708e08 *inst/include/interruptable_progress_monitor.hpp
+d6526b9eb1fa635823a1149edf9cc7ee *inst/include/interrupts.hpp
+f84a8a9ee79c7662fb46b175beac10f2 *inst/include/progress.hpp
+9a62e6e862b7c990e275ba9cb08ac2ac *inst/include/progress_bar.hpp
+d03a7d6d7bff92dbcc207dd7c1bcbf27 *inst/include/progress_legacy.hpp
+4fb3926e30cbc50601e1ebdae32ec038 *man/RcppProgress-package.Rd
+cf0c7894b1770587ecae53a9db54925f *src/Makevars
 74925c82af58102b5ea92b2610839e12 *src/tests.cpp
