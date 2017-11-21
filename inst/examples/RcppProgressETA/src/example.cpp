@@ -1,30 +1,25 @@
-#include <RcppArmadillo.h>
 #include "progress.hpp"
+#include "eta_progress_bar.hpp"
 
+#include <Rmath.h>
 
+#include <Rcpp.h>
 using namespace Rcpp;
-
 // your function for which to provide support
-double your_long_computation(int nb) {
+void your_long_computation(int nb) {
 	double sum = 0;
 	for (int i = 0; i < nb; ++i) {
 		if ( Progress::check_abort() )
-			return -1;
+			return;
 		for (int j = 0; j < nb; ++j) {
-		    arma::mat m1 = arma::eye<arma::mat>(3, 3);
-		    arma::mat m2 = arma::eye<arma::mat>(3, 3);
-
-		    m1 = m1 + 3 * (m1 + m2);
-			sum += m1[0];
+			sum += Rf_dlnorm(i+j, 0.0, 1.0, 0);
 		}
 	}
-
-	return sum;
 }
 
 void test_sequential2(int max, int nb, bool display_progress) {
-
-	Progress p(max, display_progress);
+  ETAProgressBar pb;
+	Progress p(max, display_progress, pb);
 	for (int i = 0; i < max; ++i) {
 		if ( p.increment() ) {
 			your_long_computation(nb);
@@ -39,8 +34,8 @@ void test_multithreaded_omp2(int max, int nb, int threads, bool display_progress
 		omp_set_num_threads( threads );
 	REprintf("Number of threads=%i\n", omp_get_max_threads());
 #endif
-
-	Progress p(max, display_progress); // create the progress monitor
+  ETAProgressBar pb;
+	Progress p(max, display_progress, pb); // create the progress monitor
 #ifdef _OPENMP
 #pragma omp parallel for schedule(dynamic)
 #endif

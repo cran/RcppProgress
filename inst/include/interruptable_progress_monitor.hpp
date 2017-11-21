@@ -1,9 +1,9 @@
 /*
  * interruptable_progress_monitor.hpp
  *
- * A class that monitor the progress of computations:
+ * A class that monitors the progress of computations:
  *   - can display a progress bar
- *   - can handle user (R user level) or programmatic abortion
+ *   - can handle user interrupt (R user level) or programmatic abort
  *   - can be used in OpenMP loops
  *
  * Author: karl.forner@gmail.com
@@ -12,9 +12,9 @@
 #ifndef _RcppProgress_INTERRUPTABLE_PROGRESS_MONITOR_HPP
 #define _RcppProgress_INTERRUPTABLE_PROGRESS_MONITOR_HPP
 
-
 #include "interrupts.hpp"
 #include "progress_bar.hpp"
+//#include "fetch_raw_gwas_bar.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -28,10 +28,18 @@ public: // ====== LIFECYCLE =====
 	 *
 	 * @param max the expected number of tasks to perform
 	 * @param display_progress whether to display a progress bar in the console
+	 * @param pb    the ProgressBar instance to use
 	 */
-	InterruptableProgressMonitor(unsigned long max = 1,  bool display_progress = true)  {
+	InterruptableProgressMonitor(
+	  unsigned long max,
+	  bool display_progress,
+	  ProgressBar& pb
+  ) : _progress_bar(pb)
+{
 		reset(max, display_progress);
-		if (is_display_on()) _progress_bar.display_progress_bar();
+		if (is_display_on()) {
+		  _progress_bar.display();
+		}
 	}
 
 	~InterruptableProgressMonitor() {
@@ -43,7 +51,6 @@ public: // ===== ACCESSORS/SETTERS =====
 	bool is_display_on() const { return _display_progress; }
 	unsigned long get_max() const { return _max; }
 	bool is_aborted() const { return _abort; }
-
 
 
 public: // ===== PBLIC MAIN INTERFACE =====
@@ -98,7 +105,9 @@ public: // ===== PBLIC MAIN INTERFACE =====
 	 * request computation abortion
 	 */
 	void abort() {
+#ifdef _OPENMP
 #pragma omp critical
+#endif
 		_abort = true;
 
 	}
@@ -140,13 +149,17 @@ public: // ===== methods for MASTER thread =====
 public: // ===== methods for non-MASTER threads =====
 
 	bool atomic_increment(unsigned long amount=1) {
+#ifdef _OPENMP
 #pragma omp atomic
+#endif
 		_current+=amount;
 		return ! is_aborted();
 	}
 
 	bool atomic_update(unsigned long current) {
+#ifdef _OPENMP
 #pragma omp critical
+#endif
 		_current=current;
 		return ! is_aborted();
 	}
@@ -177,7 +190,7 @@ protected: // ==== other instance methods =====
 
 
 private: // ===== INSTANCE VARIABLES ====
-	ProgressBar _progress_bar;
+  ProgressBar& _progress_bar;
 	unsigned long _max; 			// the nb of tasks to perform
 	unsigned long _current; 		// the current nb of tasks performed
 

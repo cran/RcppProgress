@@ -9,8 +9,8 @@
 #ifndef _RcppProgress_PROGRESS_HPP
 #define _RcppProgress_PROGRESS_HPP
 
-
 #include "interruptable_progress_monitor.hpp"
+#include "simple_progress_bar.hpp"
 
 // e.g. for  Rf_error
 #include <R_ext/Error.h>
@@ -19,25 +19,39 @@
 class Progress {
 public:
 	/**
-	 * Main constructor
 	 *
+	 * Main constructor
 	 * @param max the expected number of tasks to perform
 	 * @param display_progress whether to display a progress bar in the console
+	 * @param pb  the ProgressBar instance to use
 
 	 */
-	Progress(unsigned long max, bool display_progress = true) {
-		if ( monitor_singleton() != 0) { // something is wrong, two simultaneous Progress monitoring
-			Rf_error("ERROR: there is already an InterruptableProgressMonitor instance defined");
-		}
-		monitor_singleton() = new InterruptableProgressMonitor(max, display_progress);
+	Progress(
+	  unsigned long max,
+	  bool display_progress = true,
+    ProgressBar& pb = default_progress_bar()
+  ) {
+    if ( monitor_singleton() != 0) { // something is wrong, two simultaneous Progress monitoring
+      Rf_error("ERROR: there is already an InterruptableProgressMonitor instance defined");
+    }
+    monitor_singleton() = new InterruptableProgressMonitor(max, display_progress, pb);
 	}
 
-	~Progress() {
-		delete monitor_singleton();
-		monitor_singleton() = 0;
-	}
+	~Progress() { cleanup(); 	}
 
 public: // ==== USER INTERFACE =====
+	/**
+	 * cleanup
+	 *
+	 *  should normally not be called, unless a something bad happens (
+	 *  a process/thread that crashes).
+	 *
+	 */
+	void cleanup() {
+    if (monitor_singleton() != 0) delete monitor_singleton();
+    monitor_singleton() = 0;
+	}
+
 	/**
 	 * increment the current progress.
 	 *
@@ -81,6 +95,13 @@ private:
 	static InterruptableProgressMonitor*& monitor_singleton() {
 		static InterruptableProgressMonitor* p = 0;
 		return p;
+	}
+
+	// trick to provide a default static member in a header file
+	static SimpleProgressBar& default_progress_bar() {
+	  static SimpleProgressBar pb;
+	  pb.reset();
+	  return pb;
 	}
 
 public: // ==== OTHER PUBLIC INTERFACE =====
