@@ -1,6 +1,5 @@
-9b9b598b2b0581e2fd070e862f8386db *DESCRIPTION
-36631bf085b6387eabfce69aed0c5181 *NAMESPACE
-e10e072275f1fbcc6cc83550dce04c26 *R/wrap_examples.R
+8c072a986c83abf82471a4959c2d7fbf *DESCRIPTION
+d41d8cd98f00b204e9800998ecf8427e *NAMESPACE
 d9692d099a33ec63c58a280948f0a88d *README.md
 ed85ae455fd74c65cf56d14906f19fb2 *inst/examples/RcppProgressArmadillo/DESCRIPTION
 fc0bd5a713423c04f38afa1f19739501 *inst/examples/RcppProgressArmadillo/NAMESPACE
@@ -14,7 +13,7 @@ fd5fc67c2cd61e24e4bc87cc67767f18 *inst/examples/RcppProgressETA/DESCRIPTION
 c7a981894f846bf2b48bb40c5e7591f9 *inst/examples/RcppProgressETA/NAMESPACE
 cc1307d5047888ca69b6f736f851ec9a *inst/examples/RcppProgressETA/R/examples.R
 64b6726bc0339b76889c3ea604298343 *inst/examples/RcppProgressETA/src/Makevars
-61d43fa722859305c376c1a47ff00002 *inst/examples/RcppProgressETA/src/eta_progress_bar.hpp
+5b83ef7d336ff38b6ac5ffc959c1bd23 *inst/examples/RcppProgressETA/src/eta_progress_bar.hpp
 bcec214a6ddadd27c1fd0cd8cfb6ea7d *inst/examples/RcppProgressETA/src/example.cpp
 f28f88e40b610c586a800a9c4af8d953 *inst/examples/RcppProgressExample/DESCRIPTION
 a8a0bf142fb441f337772494379e0b45 *inst/examples/RcppProgressExample/NAMESPACE
@@ -32,4 +31,5 @@ d901380ced3b5323a9761820bdd594e7 *inst/include/progress_bar.hpp
 7e851a23692fbf3b5bbba4a4e6e9df62 *inst/include/simple_progress_bar.hpp
 9660192329702646dbee4ccbbdd358c3 *man/RcppProgress-package.Rd
 362bdc0bfae20dc64527821edba07de9 *tests/testthat.R
-1c68bee3768d73b078e942ce362febf2 *tests/testthat/test-pkg_examples.R
+5e1c1261dc7833d84269f821079f7325 *tests/testthat/test-pkg_examples.R
+4739a5ab656a3ed01cbde51a0ba8cb64 *tests/testthat/wrap_examples.R
