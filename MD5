@@ -1,4 +1,4 @@
-8c072a986c83abf82471a4959c2d7fbf *DESCRIPTION
+73a93d0217735be0f9c6d1e249e2e638 *DESCRIPTION
 d41d8cd98f00b204e9800998ecf8427e *NAMESPACE
 d9692d099a33ec63c58a280948f0a88d *README.md
 ed85ae455fd74c65cf56d14906f19fb2 *inst/examples/RcppProgressArmadillo/DESCRIPTION
@@ -26,7 +26,7 @@ ce8d73330c86439fcae88bf5a549dda4 *inst/examples/RcppProgressExample/src/dummy.cp
 1f258902c354004953e0f7dc974c8c23 *inst/examples/RcppProgressExample/src/example.cpp
 9a7f25b31a2089a94eb1c208fe9a9a2b *inst/include/interruptable_progress_monitor.hpp
 d6526b9eb1fa635823a1149edf9cc7ee *inst/include/interrupts.hpp
-88bb67e5b7dd5601f0b1c02c3b5a326d *inst/include/progress.hpp
+d65e616bdc31263588a05974d2f69a65 *inst/include/progress.hpp
 d901380ced3b5323a9761820bdd594e7 *inst/include/progress_bar.hpp
 7e851a23692fbf3b5bbba4a4e6e9df62 *inst/include/simple_progress_bar.hpp
 9660192329702646dbee4ccbbdd358c3 *man/RcppProgress-package.Rd
